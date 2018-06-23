@@ -2,6 +2,7 @@
 
 import socket
 import select
+import queue
 from queue import Queue
 
 def run(host='localhost', port=8086):
@@ -65,7 +66,7 @@ def run(host='localhost', port=8086):
                 elif flag & select.EPOLLOUT:
                     try:
                         next_msg = message_queues[s].get_nowait()
-                    except:
+                    except queue.Empty:
                         print(s.getpeername, "queue empty")
                         # 修改文件句柄为读事件
                         epoll.modify(fd, READ_ONLY)
