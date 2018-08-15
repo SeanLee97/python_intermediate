@@ -26,7 +26,7 @@ def run(host='localhost', port=8086):
             print("wait for event")
             # select.select(rlist, wlist, xlist[, timeout])
             # here xlist equivalent to rlist
-	    # select 操作的是三个描述符：读、写、异常
+            # select操作的是三个描述符：读、写、异常
             readable, writeable, exceptional = select.select(rlist, wlist, rlist)
 
             if not (readable or writeable or exceptional):
